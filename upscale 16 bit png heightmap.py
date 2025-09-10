@@ -11,7 +11,7 @@ def upscale_heightmap(input_path, output_path, target_size):
     print("Full path to input_file1:", os.path.abspath(input_path))
 
     # Open the heightmap image as 16-bit
-    img = Image.open(input_path)
+    img = Image.open(os.path.abspath(input_path))
     original_array = np.array(img, dtype=np.uint16)  # Load as 16-bit integer
 
     # Debug: Print original array stats

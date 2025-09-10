@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from PIL import Image
 from scipy.ndimage import zoom
 
@@ -7,6 +8,8 @@ from scipy.ndimage import zoom
 
 # NOTE: This script takes 16 bit pngs specifically. You can import these from Gaea.
 def upscale_heightmap(input_path, output_path, target_size):
+    print("Full path to input_file1:", os.path.abspath(input_path))
+
     # Open the heightmap image as 16-bit
     img = Image.open(input_path)
     original_array = np.array(img, dtype=np.uint16)  # Load as 16-bit integer
@@ -31,17 +34,25 @@ def upscale_heightmap(input_path, output_path, target_size):
     print(f"Upscaled heightmap saved to {output_path}")
 
 # Example usage
-input_file1 = "Hills Heightmap 1009x1009x512.png"  # Replace with your input file path
-output_file1 = "Hills Heightmap Upscaled 4033x4033.png"  # Replace with your desired output file path
-output_file2 = "Hills Heightmap Upscaled 8129x8129.png"
+input_file1 = "./assets/Lakes_Mask.png"  # Replace with your input file path
+output_file1 = "./assets/Lakes_Mask 4033x4033.png"  # Replace with your desired output file path
+output_file2 = "./assets/Lakes_Mask 8129x8129.png"
 
-input_file2 = "Hills Lakes Mask.png"
-output_file3 = "Hills Lakes Mask Upscaled 4033x4033.png"
-output_file4 = "Hills Lakes Mask Upscaled 8129x8129.png"
+input_file2 = "./assets/Lakes_Shore_Mask.png"
+output_file3 = "./assets/Lakes_Shore_Mask 4033x4033.png"
+output_file4 = "./assets/Lakes_Shore_Mask 8129x8129.png"
 
-input_file3 = "Hills Rivers Mask.png"
-output_file5 = "Hills Rivers Mask Upscaled 4033x4033.png"
-output_file6 = "Hills Rivers Mask Upscaled 8129x8129.png"
+input_file3 = "./assets/Rivers_Mask.png"
+output_file5 = "./assets/Rivers_Mask 4033x4033.png"
+output_file6 = "./assets/Rivers_Mask 8129x8129.png"
+
+input_file4 = "./assets/Rivers_Shore_Mask.png"
+output_file7 = "./assets/Rivers_Shore_Mask 4033x4033.png"
+output_file8 = "./assets/Rivers_Shore_Mask 8129x8129.png"
+
+input_file5 = "./assets/Output.png"
+output_file9 = "./assets/Output 4033x4033.png"
+output_file10 = "./assets/Output 8129x8129.png"
 
 target_resolution1 = (4033, 4033)  # Replace with your desired resolution
 target_resolution2 = (8129, 8129)
@@ -54,3 +65,9 @@ upscale_heightmap(input_file2, output_file4, target_resolution2)
 
 upscale_heightmap(input_file3, output_file5, target_resolution1)
 upscale_heightmap(input_file3, output_file6, target_resolution2)
+
+upscale_heightmap(input_file4, output_file7, target_resolution1)
+upscale_heightmap(input_file4, output_file8, target_resolution2)
+
+upscale_heightmap(input_file5, output_file9, target_resolution1)
+upscale_heightmap(input_file5, output_file10, target_resolution2)
